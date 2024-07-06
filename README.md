@@ -1,27 +1,21 @@
-# EssentialsPractice
+# Kalkulator inwestora
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.0-next.2.
+Aplikacja umożliwia wyliczenie zwrotów z inwestycji na podstawie danych wprowadzonych przez użytkownika.
 
-## Development server
+## Konfiguracja
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Użytkownik wprowadza do kalkulatora kwotę początkową inwestycji, kwotę jaka zostanie wprowadzona na przestrzeni roku, długość inwestycji w latach i planowana stopa zwrotu. Aplikacja na podstawie tych danych wylicza rentowność inwestycji.
 
-## Code scaffolding
+## Technologia
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+W projekcie została wykorzystana najnowsza wersja Angulara - wykorzystywany jest nowy syntax, outputs czy signals. Ponadto użyto komponentów z Angular Material tj. tabela, paginacja, dialog, buttons, input forms oraz tooltipy.
 
-## Build
+W kodzie aplikacji znajdziemy silne typowanie z Typescript wraz z definicją modeli, serwis przechowujący metodę wyliczeniową który jest wstrzyknięty poprzez użycie dependency injection do klasy komponentu oraz zdefioniowanie custom pipe odpowiedzialnego za przekazanie wartości boolean dla przycisku.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Style
 
-## Running unit tests
+Aplikacja oprócz customowych styli wykorzystuje również style zawarte w Angular Material.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Deployment
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+https://investor-calculator.onrender.com/
