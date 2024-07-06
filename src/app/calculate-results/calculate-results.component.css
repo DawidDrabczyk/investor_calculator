@@ -1,0 +1,9 @@
+.btn {
+  width: 150px;
+  margin: 1em 0 1em 2em;
+  padding: 1em;
+}
+
+.even-row {
+  background-color: #caf0cb7e; /* Możesz dostosować kolor według potrzeb */
+}

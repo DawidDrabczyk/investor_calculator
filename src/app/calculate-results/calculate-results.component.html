@@ -1,0 +1,57 @@
+<app-calculate-data [assumptions]="assumptions"></app-calculate-data>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!-- Kolumny -->
+  <ng-container matColumnDef="year">
+    <th mat-header-cell *matHeaderCellDef>Rok</th>
+    <td mat-cell *matCellDef="let element">{{ element.year }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="interest">
+    <th mat-header-cell *matHeaderCellDef>Całkowita wartość inwestycji w danym roku</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.totalAmountInvested.toFixed(2) }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="valueEndOfYear">
+    <th mat-header-cell *matHeaderCellDef>Wartość inwestycji na koniec roku</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.valueEndOfYear.toFixed(2) }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="annualInvestment">
+    <th mat-header-cell *matHeaderCellDef>Zarobek z inwestycji na koniec rok</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.totalInterest.toFixed(2) }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="totalInterest">
+    <th mat-header-cell *matHeaderCellDef>Całkowita wartość wpłat</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.totalInterest.toFixed(2) }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="totalAmountInvested">
+    <th mat-header-cell *matHeaderCellDef>Całkowity przychód</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.totalAmountInvested.toFixed(2) }}
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns; let even = even" [ngClass]="{'even-row': even}"></tr>
+</table>
+
+<mat-paginator
+  [length]="dataSource.data.length"
+  [pageSize]="5"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  aria-label="Select page"
+>
+</mat-paginator>
+
+<button mat-stroked-button (click)="closeDialog()" class="btn">Zamknij</button>

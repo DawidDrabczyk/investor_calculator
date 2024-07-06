@@ -1,0 +1,21 @@
+.form_section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main_form {
+  margin: auto;
+  width: 55%;
+  background-color: greenyellow;
+  padding: 1.5em;
+}
+
+mat-form-field {
+  margin-right: 1em;
+}
+
+.no_calculate_info {
+  margin-top: 1em;
+  text-align: center;
+}

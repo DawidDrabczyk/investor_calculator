@@ -1,0 +1,100 @@
+<form class="main_form" (ngSubmit)="onCalculate()">
+  <div class="form_section">
+    <mat-form-field>
+      <mat-label>Wpłata początkowa</mat-label>
+      <input
+        matInput
+        name="initialValue"
+        placeholder="Min. 1"
+        type="number"
+        min="1"
+        [(ngModel)]="initialValue"
+        matTooltipPosition="above"
+        matTooltipShowDelay="500"
+        [matTooltip]="
+          initialValue() === '0'
+            ? 'Wprowadź wartość początkową planowanej inwestycji'
+            : ''
+        "
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Wartość roczna</mat-label>
+      <input
+        matInput
+        name="annualValue"
+        placeholder="Min. 1"
+        type="number"
+        min="1"
+        [(ngModel)]="annualValue"
+        matTooltipPosition="above"
+        matTooltipShowDelay="500"
+        [matTooltip]="
+          annualValue() === '0'
+            ? 'Wprowadź wartość rocznych wpłat planowanej inwestycji'
+            : ''
+        "
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="form_section">
+    <mat-form-field>
+      <mat-label>Oczekiwany zwrot</mat-label>
+      <input
+        matInput
+        name="expectedValue"
+        placeholder="Min. 1 %"
+        type="number"
+        min="1"
+        [(ngModel)]="expectedValue"
+        matTooltipPosition="above"
+        matTooltipShowDelay="500"
+        [matTooltip]="
+          expectedValue() === '0'
+            ? 'Wprowadź oczekiwaną stopę zwrotu planowanej inwestycji'
+            : ''
+        "
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Czas inwestycji</mat-label>
+      <input
+        matInput
+        name="durationInvestment"
+        placeholder="Min. 1 rok"
+        type="number"
+        min="1"
+        [(ngModel)]="durationInvestment"
+        matTooltipPosition="above"
+        matTooltipShowDelay="500"
+        [matTooltip]="
+          durationInvestment() === '0'
+            ? 'Wprowadź oczekiwany czas planowanej inwestycji'
+            : ''
+        "
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="form_section">
+    <button
+      mat-stroked-button
+      matTooltip="Kliknij aby obliczyć"
+      matTooltipPosition="above"
+      matTooltipShowDelay="500"
+      [disabled]="
+        [initialValue(), annualValue(), expectedValue(), durationInvestment()]
+          | disabledButton
+      "
+    >
+      Oblicz
+    </button>
+  </div>
+</form>
+
+@if (!isCalculated) {
+<p class="no_calculate_info">
+  Wprowadź dane potrzebne do wyliczenia inwestycji
+</p>
+}
