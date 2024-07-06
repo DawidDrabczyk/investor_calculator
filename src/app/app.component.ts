@@ -9,7 +9,6 @@ import { Calculate } from './models/calculate.model';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  public onRestetAssumptions?: boolean;
   public investmentsData: InvestmentsData[] = [];
   public assumptions?: Calculate;
   private dialog = inject(MatDialog);
@@ -30,7 +29,6 @@ export class AppComponent {
 
     dialogRef.afterClosed().subscribe((res) => {
       console.log(res);
-      this.onRestetAssumptions = true;
     });
   }
 

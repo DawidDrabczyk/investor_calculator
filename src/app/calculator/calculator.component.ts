@@ -1,6 +1,7 @@
-import { Component, output, signal } from '@angular/core';
+import { Component, inject, output, signal } from '@angular/core';
 import { Calculate } from '../models/calculate.model';
 import { InvestmentsData } from '../models/investments-data.model';
+import { CalculatorService } from './calculator.service';
 
 @Component({
   selector: 'app-calculator',
@@ -15,11 +16,12 @@ export class CalculatorComponent {
   public calculate = output<InvestmentsData[]>();
   public assumptions = output<Calculate>();
   public isCalculated: boolean = false;
+  public calculatorService = inject(CalculatorService);
 
   public onCalculate(): void {
     const calculate: Calculate = this.prepareDataToCalculate();
     const investmentsData: InvestmentsData[] =
-      this.calculateInvestmentResults(calculate);
+      this.calculatorService.calculateInvestmentResults(calculate);
 
     if (investmentsData) {
       this.assumptions.emit(calculate);
@@ -37,31 +39,5 @@ export class CalculatorComponent {
     };
 
     return calculate;
-  }
-
-  private calculateInvestmentResults(calculate: Calculate): InvestmentsData[] {
-    const investmentsData: InvestmentsData[] = [];
-    let investmentValue = calculate.initialValue;
-
-    for (let i = 0; i < calculate.durationInvestment; i++) {
-      const year = i + 1;
-      const interestEarnedInYear =
-        investmentValue * (calculate.expectedValue / 100);
-      investmentValue += interestEarnedInYear + calculate.annualValue;
-
-      const totalInterest =
-        investmentValue - calculate.annualValue * year - calculate.initialValue;
-      investmentsData.push({
-        year: year,
-        interest: interestEarnedInYear,
-        valueEndOfYear: investmentValue,
-        annualInvestment: calculate.annualValue,
-        totalInterest: totalInterest,
-        totalAmountInvested:
-          calculate.initialValue + calculate.annualValue * year,
-      });
-    }
-
-    return investmentsData;
   }
 }

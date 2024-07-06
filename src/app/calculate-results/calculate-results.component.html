@@ -7,43 +7,50 @@
     <td mat-cell *matCellDef="let element">{{ element.year }}</td>
   </ng-container>
 
-  <ng-container matColumnDef="interest">
-    <th mat-header-cell *matHeaderCellDef>Całkowita wartość inwestycji w danym roku</th>
-    <td mat-cell *matCellDef="let element">
-      {{ element.totalAmountInvested.toFixed(2) }}
-    </td>
-  </ng-container>
-
   <ng-container matColumnDef="valueEndOfYear">
-    <th mat-header-cell *matHeaderCellDef>Wartość inwestycji na koniec roku</th>
+    <th mat-header-cell *matHeaderCellDef>Wartość inwestycji</th>
     <td mat-cell *matCellDef="let element">
-      {{ element.valueEndOfYear.toFixed(2) }}
+      {{ element.valueEndOfYear | currency:'PLN':'symbol':'1.0-2' }}
     </td>
   </ng-container>
 
-  <ng-container matColumnDef="annualInvestment">
-    <th mat-header-cell *matHeaderCellDef>Zarobek z inwestycji na koniec rok</th>
+  <ng-container matColumnDef="interest">
+    <th mat-header-cell *matHeaderCellDef>Roczne odsetki</th>
     <td mat-cell *matCellDef="let element">
-      {{ element.totalInterest.toFixed(2) }}
+      {{ element.interest.toFixed(2) }} %
     </td>
   </ng-container>
 
   <ng-container matColumnDef="totalInterest">
-    <th mat-header-cell *matHeaderCellDef>Całkowita wartość wpłat</th>
+    <th mat-header-cell *matHeaderCellDef>Odsetki łącznie</th>
     <td mat-cell *matCellDef="let element">
-      {{ element.totalInterest.toFixed(2) }}
+      {{ element.totalInterest.toFixed(2) }} %
     </td>
   </ng-container>
 
   <ng-container matColumnDef="totalAmountInvested">
-    <th mat-header-cell *matHeaderCellDef>Całkowity przychód</th>
+    <th mat-header-cell *matHeaderCellDef>Całkowity wpłacony kapitał</th>
     <td mat-cell *matCellDef="let element">
-      {{ element.totalAmountInvested.toFixed(2) }}
+      {{ element.totalAmountInvested | currency:'PLN':'symbol':'1.0-2' }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="different">
+    <th mat-header-cell *matHeaderCellDef>Roczny zysk</th>
+    <td mat-cell *matCellDef="let element">
+      +
+      {{
+        element.valueEndOfYear - element.totalAmountInvested | currency:'PLN':'symbol':'1.0-2'
+      }}
     </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns; let even = even" [ngClass]="{'even-row': even}"></tr>
+  <tr
+    mat-row
+    *matRowDef="let row; columns: displayedColumns; let even = even"
+    [ngClass]="{ 'even-row': even }"
+  ></tr>
 </table>
 
 <mat-paginator

@@ -1,5 +1,9 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { LOCALE_ID, NgModule } from '@angular/core';
+import {
+  CommonModule,
+  CurrencyPipe,
+  registerLocaleData,
+} from '@angular/common';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -15,6 +19,8 @@ import { DisabledButtonPipe } from './pipes/disabled-button.pipe';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CalculateDataComponent } from './calculate-results/calculate-data/calculate-data.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import localePl from '@angular/common/locales/pl';
+registerLocaleData(localePl);
 
 @NgModule({
   declarations: [
@@ -35,8 +41,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatTableModule,
     MatDialogModule,
     MatPaginatorModule,
+    CurrencyPipe,
   ],
   bootstrap: [AppComponent],
-  providers: [provideAnimationsAsync()],
+  providers: [
+    provideAnimationsAsync(),
+    { provide: LOCALE_ID, useValue: 'pl-PL' },
+  ],
 })
 export class AppModule {}

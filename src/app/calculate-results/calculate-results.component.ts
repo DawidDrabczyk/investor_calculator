@@ -13,11 +13,11 @@ import { MatPaginator } from '@angular/material/paginator';
 export class CalculateResultsComponent implements OnInit, AfterViewInit {
   public displayedColumns: string[] = [
     'year',
-    'interest',
-    'valueEndOfYear',
-    'annualInvestment',
-    'totalInterest',
     'totalAmountInvested',
+    'interest',
+    'totalInterest',
+    'different',
+    'valueEndOfYear',
   ];
   public dataSource: MatTableDataSource<InvestmentsData>;
   public assumptions?: Calculate;
